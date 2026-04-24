@@ -7,6 +7,10 @@ The model is based on the UCI Cleveland Heart Disease dataset and uses a scikit-
 
 The goal of this project is to move a machine learning model beyond a Jupyter Notebook and turn it into a usable API. It demonstrates model training, preprocessing, serialization, and real-time prediction.
 
+## Portfolio Value
+
+This project shows how a machine learning model can be moved from a notebook-style workflow into a small usable API. It demonstrates basic ML productionization skills such as training a model in a script, saving the trained pipeline, validating structured input, and serving real-time predictions through an endpoint.
+
 ## Tools Used
 
 - Python
@@ -24,6 +28,22 @@ The goal of this project is to move a machine learning model beyond a Jupyter No
 - Provides a `/predict` endpoint
 - Accepts 13 clinical input features
 - Returns heart disease risk prediction and probability
+
+## Project Structure
+
+```text
+heart-disease-ml-api/
+├── app/
+│   ├── main.py
+│   ├── schemas.py
+│   ├── train_model.py
+│   └── model.pkl
+├── screenshots/
+│   └── predict_success.png
+├── README.md
+├── requirements.txt
+└── .gitignore
+```
 
 ## Model Performance
 
@@ -48,6 +68,12 @@ Example output:
 }
 ```
 
+## Screenshot
+
+The API was tested through FastAPI Swagger UI.
+
+![Prediction Success](screenshots/predict_success.png)
+
 ## How to Run
 
 1. **Install dependencies:**
@@ -67,3 +93,7 @@ uvicorn app.main:app --reload
 
 4. **Open the API documentation to test:**
 Navigate to `http://127.0.0.1:8000/docs` in your web browser.
+
+## Note
+
+This project is for educational and portfolio purposes only. It is not intended for real medical diagnosis or clinical decision-making.
