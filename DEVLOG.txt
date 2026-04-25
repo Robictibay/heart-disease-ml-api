@@ -1,0 +1,114 @@
+=========================================================
+DEVELOPER LOG - HEART DISEASE ML API
+Author: Rafael Angelo S. Tibayan
+Project: heart-disease-ml-api
+=========================================================
+
+[2026-04-24] Phase 1: Machine Learning Model API - Completed
+---------------------------------------------------------
+
+PROJECT GOAL
+Built a portfolio project demonstrating how to transition a machine learning classification model from a static Jupyter Notebook into a working local REST API using FastAPI.
+
+This project was created to strengthen portfolio coverage in:
+- Machine Learning Engineering
+- API Development (FastAPI)
+- Data Preprocessing Pipelines
+- Scikit-learn Serialization
+
+REPOSITORY
+- Repository name: heart-disease-ml-api
+- GitHub owner: Robictibay
+- Description: FastAPI deployment of a scikit-learn heart disease prediction model using the UCI Cleveland dataset.
+
+LOCAL PROJECT PATH
+C:\Users\rasti\OneDrive\Desktop\heart-disease-ml-api
+
+TOOLS / LIBRARIES USED
+- Python
+- FastAPI
+- scikit-learn
+- pandas
+- numpy
+- joblib
+- Uvicorn
+- Pydantic
+- Git / GitHub
+
+FINAL PROJECT STRUCTURE
+heart-disease-ml-api/
+├── app/
+│   ├── main.py
+│   ├── schemas.py
+│   ├── train_model.py
+│   └── model.pkl
+├── screenshots/
+│   └── predict_success.png
+├── README.md
+├── requirements.txt
+├── DEVLOG.txt
+└── .gitignore
+
+IMPLEMENTATION SUMMARY
+1. Environment Setup:
+   - Initialized the local project folder and installed dependencies through requirements.txt.
+
+2. Model Training Script (app/train_model.py):
+   - Loaded the official UCI Cleveland Heart Disease dataset directly from the UCI repository URL to bypass OpenML Sparse ARFF compatibility issues.
+   - Cleaned data (handled '?' missing values) and binarized the target variable (0 = absent, 1 = present).
+   - Used a scikit-learn Pipeline with ColumnTransformer and StandardScaler for consistent preprocessing.
+   - Trained the model with an 80/20 train-test split (stratified).
+   - Evaluated model: Accuracy (0.833), Recall (0.786), F1 (0.815), ROC AUC (0.950).
+   - Serialized and saved the trained model pipeline using joblib (model.pkl).
+
+3. API Input Schema (app/schemas.py):
+   - Implemented strict data validation using Pydantic BaseModel.
+   - Defined the 13 clinical input features (age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal) to ensure correct data types from incoming requests.
+
+4. API Server (app/main.py):
+   - Built a FastAPI application serving the saved model.
+   - Created a root endpoint (/) for health checking.
+   - Created a POST endpoint (/predict) that:
+     - Accepts JSON payloads matching the Pydantic schema.
+     - Converts the payload into a pandas DataFrame.
+     - Passes the DataFrame through the scikit-learn pipeline.
+     - Returns a JSON response containing the binary prediction, a human-readable risk label, and the calculated probability score.
+
+5. API Testing:
+   - Booted the server using Uvicorn.
+   - Tested the /predict endpoint using the automatically generated FastAPI Swagger UI (/docs).
+   - Successfully received a 200 OK response with prediction outputs.
+   - Captured predict_success.png for documentation.
+
+FINAL STATUS
+✅ Project folder created
+✅ GitHub repo created
+✅ Training script built
+✅ Data fetched and cleaned dynamically
+✅ Scikit-learn pipeline established
+✅ Model trained and saved (.pkl)
+✅ Pydantic schemas defined
+✅ FastAPI endpoints created
+✅ API tested locally via Swagger UI
+✅ README created with metrics
+✅ Devlog created
+✅ GitHub push completed
+
+PORTFOLIO VALUE
+This project demonstrates:
+- The ability to productionize ML models, bridging the gap between Data Science and Software Engineering.
+- Reduced preprocessing mistakes by keeping scaling and model inference inside one scikit-learn Pipeline.
+- Proficiency in modern API frameworks (FastAPI) and strict typing (Pydantic).
+
+RESUME BULLET OPTION
+- Built a working local REST API using FastAPI to serve a serialized scikit-learn Logistic Regression model, allowing real-time heart disease risk predictions from clinical features.
+
+SHORTER RESUME BULLET
+- Engineered a local FastAPI REST API serving a scikit-learn heart disease prediction model (0.95 ROC-AUC).
+
+INTERVIEW TALKING POINT
+"For this project, I wanted to show that I can do more than just train models in notebooks. I took the UCI Cleveland dataset, built a scikit-learn Pipeline for consistent preprocessing, and exposed the model via a FastAPI endpoint. By defining my input structures with Pydantic, I ensured the API was robust against bad data. The code and documentation are currently available on my GitHub."
+
+=========================================================
+END OF DEVLOG
+=========================================================
